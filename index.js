@@ -135,6 +135,12 @@ async function run() {
       res.send(result);
     });
 
+    app.post("/menu", verifyToken, verifyAdmin, async (req, res) => {
+      const item = req.body;
+      const result = await menuCollection.insertOne(item);
+      res.send(result);
+    });
+
     // carts collection
     app.get("/carts", async (req, res) => {
       const email = req.query.email;
